@@ -10,7 +10,7 @@ export default function Home() {
 
     return <> <h1 className="title">HRnet</h1>
         <div className="container">
-            <NavLink>View Current Employees</NavLink>
+            <NavLink to="/employee-list">View Current Employees</NavLink>
             <h2>Create Employee</h2>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="first-name">First Name</label>

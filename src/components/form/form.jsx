@@ -1,5 +1,17 @@
 import "./form.css"
 import Modal from "../../components/modal/modal";
+import { FormGroup } from "@mui/material"
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+
+
+
+
 
 
 export default function form() {
@@ -8,41 +20,40 @@ export default function form() {
         alert("Employee Created!")
     }
 
-    return <form onSubmit={handleSubmit}>
-        <label htmlFor="first-name">First Name</label>
-        <input type="text" id="first-name" />
+    return <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
+        <Box className="formField" marginBottom={2}>
 
-        <label htmlFor="last-name">Last Name</label>
-        <input type="text" id="last-name" />
+            <FormGroup>
+                <TextField label="First Name" id="first-name" variant="outlined" />
+                <TextField label="Last Name" id="last-name" variant="outlined" />
+                <TextField label="Date of Birth" id="date-of-birth" variant="outlined" />
+                <TextField label="Start Date" id="start-date" variant="outlined" />
+                <Card variant="outlined">
+                    <CardContent>
+                        <Typography variant="h6" gutterBottom>
+                            Address
+                        </Typography>
 
-        <label htmlFor="date-of-birth">Date of Birth</label>
-        <input id="date-of-birth" type="text" />
+                        <TextField label="Street" id="street" variant="outlined" />
+                        <TextField label="City" id="city" variant="outlined" />
+                        <TextField label="State" id="state" variant="outlined" />
+                        <TextField label="Zip Code" id="zip-code" variant="outlined" />
+                    </CardContent>
 
-        <label htmlFor="start-date">Start Date</label>
-        <input id="start-date" type="text" />
+                </Card>
 
-        <fieldset>
-            <legend>Adress</legend>
-            <label htmlFor="street">Street</label>
-            <input id="street" type="text" />
+                <TextField select label="Department" id="department" variant="outlined" fullWidth>
+                    <MenuItem value="Sales">Sales</MenuItem>
+                    <MenuItem value="Marketing">Marketing</MenuItem>
+                    <MenuItem value="Engineering">Engineering</MenuItem>
+                    <MenuItem value="Human Resources">Human Resources</MenuItem>
+                    <MenuItem value="Legal">Legal</MenuItem>
+                </TextField>
+                <Button className="saveBtn" variant="contained" color="primary" type="submit">
+                    Save
+                </Button>            <Modal />
+            </FormGroup>
+        </Box>
 
-            <label htmlFor="city">City</label>
-            <input id="city" type="text" />
-
-            <label htmlFor="state">State</label>
-            <select name="state" id="state"></select>
-
-            <label htmlFor="zip-code">Zip Code</label>
-        </fieldset>
-        <label htmlFor="department">Department</label>
-        <select name="department" id="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-        </select>
-        <input className="saveBtn" type="submit" value="Save" />
-        <Modal />
     </form >
 }

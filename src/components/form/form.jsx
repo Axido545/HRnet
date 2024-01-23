@@ -51,7 +51,7 @@ export default function form() {
                 </TextField>
                 <Button className="saveBtn" variant="contained" color="primary" type="submit">
                     Save
-                </Button>            <Modal />
+                </Button><Modal />
             </FormGroup>
         </Box>
 

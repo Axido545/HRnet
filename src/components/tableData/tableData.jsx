@@ -6,18 +6,19 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useSelector } from "react-redux";
+// function createData(firstName, lastName, startDate, department, dateOfBirth, street, city, state, zipCode) {
+//     return { firstName, lastName, startDate, department, dateOfBirth, street, city, state, zipCode };
+// }
 
-function createData(firstName, lastName, startDate, department, dateOfBirth, street, city, state, zipCode) {
-    return { firstName, lastName, startDate, department, dateOfBirth, street, city, state, zipCode };
-}
+// const rows = [
+//     createData("john", "doe", "11/12", "44", "10/10/01", "123 Main Street", "Anytown", "CA (Californie)", "90210")
 
-const rows = [
-    createData("john", "doe", "11/12", "44", "10/10/01", "123 Main Street", "Anytown", "CA (Californie)", "90210")
-
-];
-
+// ];
 
 export default function TableData() {
+    const users = useSelector(state => state.userState.users);
+
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -36,7 +37,7 @@ export default function TableData() {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
+                    {users.map((row) => (
                         <TableRow
                             key={row.firstName}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}

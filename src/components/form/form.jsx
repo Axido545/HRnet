@@ -16,10 +16,12 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useNavigate } from "react-redux";
+import { addUser } from "../../redux/employeeSlice";
 
 export default function form() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [startDate, setStartDate] = useState(null);
@@ -35,15 +37,21 @@ export default function form() {
         event.preventDefault();
         console.log('fname:', firstname);
         console.log('lname:', lastname);
-        console.log('sdate:', startDate);
-        console.log('dob:', dob);
+        console.log('sdate:', startDate ? startDate.toISOString() : null);
+        console.log('dob:', dob ? dob.toISOString() : null);
         console.log('street:', street);
         console.log('city:', city);
         console.log('state:', state);
         console.log('zipCode:', zipCode);
         console.log('department:', department);
-        const user = { firstname, lastname, startDate, dob, street, city, state, zipCode, department }
+        const user = {
+            firstname, lastname,
+            startDate: startDate ? startDate.toISOString() : null,
+            dob: dob ? dob.toISOString() : null,
+            street, city, state, zipCode, department
+        }
         dispatch(addUser(user))
+
 
     }
     return <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>

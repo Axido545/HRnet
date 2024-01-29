@@ -1,5 +1,5 @@
 import "./form.css"
-import Modal from "../../components/modal/modal";
+import ModalConfirm from "../../components/modalConfirm/modalConfirm";
 import { FormGroup } from "@mui/material"
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -106,7 +106,7 @@ export default function form() {
                     <Button className="saveBtn" variant="contained" color="primary" type="submit">
                         Save
                     </Button>
-                    <Modal />
+                    <ModalConfirm />
                 </FormGroup>
             </LocalizationProvider>
         </Box>

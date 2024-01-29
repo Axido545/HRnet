@@ -16,9 +16,10 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
+import { useDispatch } from "react-redux";
 
 export default function form() {
-
+    const dispatch = useDispatch()
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [startDate, setStartDate] = useState(null);
@@ -41,7 +42,8 @@ export default function form() {
         console.log('state:', state);
         console.log('zipCode:', zipCode);
         console.log('department:', department);
-
+        const user = { firstname, lastname, startDate, dob, street, city, state, zipCode, department }
+        dispatch(addUser(user))
 
     }
     return <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>

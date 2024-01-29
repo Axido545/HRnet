@@ -1,5 +1,5 @@
 import "./form.css"
-import ModalConfirm from "../../components/modalConfirm/modalConfirm";
+import ModalConfirm from "../modalConfirm/modalConfirm.jsx";
 import { FormGroup } from "@mui/material"
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';

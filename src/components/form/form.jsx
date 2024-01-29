@@ -19,76 +19,73 @@ import { useState } from 'react';
 
 export default function form() {
 
-
-
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        street: '',
-        city: '',
-        state: '',
-        zipCode: '',
-    })
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [startDate, setStartDate] = useState(null);
+    const [dob, setDob] = useState(null);
+    const [street, setStreet] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zipCode, setZipCode] = useState('');
     const [selectedDate, setSelectedDate] = useState(null);
     const [department, setDepartment] = useState('');
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
-    const handleChange = (event) => {
-        const { id, value } = event.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [id]: value,
-        }));
-        setDepartment(event.target.value);
-    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('Formulaire soumis :', formData);
+        console.log('fname:', firstname);
+        console.log('lname:', lastname);
+        console.log('sdate:', startDate);
+        console.log('dob:', dob);
+        console.log('street:', street);
+        console.log('city:', city);
+        console.log('state:', state);
+        console.log('zipCode:', zipCode);
+        console.log('department:', department);
+
+
     }
     return <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
         <Box className="formField" marginBottom={2}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <FormGroup>
-                    <TextField label="First Name" id="firstName" variant="outlined" onChange={handleChange}
-                    />
-                    <TextField label="Last Name" id="lastName" variant="outlined" onChange={handleChange}
-                    />
-                    <DatePicker label="Start Date" id="startDate" variant="outlined" value={selectedDate} onChange={handleDateChange} />
-                    <DatePicker label="Date of Birth" id="dateOfBirth" variant="outlined" value={selectedDate} onChange={handleDateChange} />
+                    <TextField label="First Name" id="firstName" variant="outlined" onChange={e => setFirstname(e.target.value)} />
+                    <TextField label="Last Name" id="lastName" variant="outlined" onChange={e => setLastname(e.target.value)} />
+                    <DatePicker label="Start Date" id="startDate" variant="outlined" value={selectedDate} onChange={(date) => setStartDate(date)} />
+                    <DatePicker label="Date of Birth" id="dob" variant="outlined" value={selectedDate} onChange={(date) => setDob(date)} />
                     <Card variant="outlined">
                         <CardContent>
                             <Typography variant="h6" gutterBottom>
                                 Address
                             </Typography>
-                            <TextField label="Street" id="street" variant="outlined" value={formData.street} onChange={handleChange} />
-                            <TextField label="City" id="city" variant="outlined" value={formData.city} onChange={handleChange} />
+                            <TextField label="Street" id="street" variant="outlined" onChange={e => setStreet(e.target.value)} />
+                            <TextField label="City" id="city" variant="outlined" onChange={e => setCity(e.target.value)} />
                             <FormControl fullWidth>
                                 <InputLabel id="state-select-label">State</InputLabel>
                                 <Select
                                     labelId="state-select-label"
                                     id="state"
                                     label="State"
-                                    onChange={handleChange}
+                                    value={state || ""}
+                                    onChange={e => setState(e.target.value)}
                                 >
                                     {states.map((state) => (
-                                        <MenuItem key={state.abbreviation} value={state.abbreviation} >
+                                        <MenuItem key={state.abbreviation} value={state.name} >
                                             {state.name}
                                         </MenuItem>
                                     ))}
                                 </Select>
                             </FormControl>
-                            <TextField label="Zip Code" id="zipCode" variant="outlined" value={formData.zipCode} onChange={handleChange} />
+                            <TextField label="Zip Code" id="zipCode" variant="outlined" onChange={e => setZipCode(e.target.value)} />
                         </CardContent>
                     </Card>
                     <FormControl fullWidth>
-                        <InputLabel id="department-select-label">Departement</InputLabel>
+                        <InputLabel id="department-select-label">Département</InputLabel>
                         <Select
                             labelId="department-select-label"
                             id="department"
-                            label="Department"
-                            value={department}
-                            onChange={handleChange}                        >
+                            label="Département"
+                            value={department || ""}
+                            onChange={e => setDepartment(e.target.value)}                   >
                             <MenuItem value="Sales">Sales</MenuItem>
                             <MenuItem value="Marketing">Marketing</MenuItem>
                             <MenuItem value="Engineering">Engineering</MenuItem>

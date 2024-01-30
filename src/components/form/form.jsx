@@ -16,12 +16,13 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
-import { useDispatch, useNavigate } from "react-redux";
-import { addUser } from "../../redux/employeeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addUser, modalHandle } from "../../redux/employeeSlice";
 
-export default function form() {
+export default function Form() {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const modalOpen = useSelector((state) => state.modalOpen);
+
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
     const [startDate, setStartDate] = useState(null);
@@ -32,6 +33,7 @@ export default function form() {
     const [zipCode, setZipCode] = useState('');
     const [selectedDate, setSelectedDate] = useState(null);
     const [department, setDepartment] = useState('');
+    const done = useSelector((state) => state.done);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -51,9 +53,12 @@ export default function form() {
             street, city, state, zipCode, department
         }
         dispatch(addUser(user))
-
-
+        dispatch(modalHandle(true));
     }
+
+    const handleModalClose = () => {
+        dispatch(modalHandle(false));
+    };
     return <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
         <Box className="formField" marginBottom={2}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -106,7 +111,7 @@ export default function form() {
                     <Button className="saveBtn" variant="contained" color="primary" type="submit">
                         Save
                     </Button>
-                    <ModalConfirm />
+                    <ModalConfirm className="saveBtn" open={modalOpen} handleClose={handleModalClose} />
                 </FormGroup>
             </LocalizationProvider>
         </Box>

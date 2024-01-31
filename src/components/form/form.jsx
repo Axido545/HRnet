@@ -18,6 +18,8 @@ import Select from '@mui/material/Select';
 import { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { addUser, modalHandle } from "../../redux/employeeSlice";
+import FormHelperText from '@mui/material/FormHelperText';
+
 
 export default function Form() {
     const dispatch = useDispatch()
@@ -124,8 +126,9 @@ export default function Form() {
         <Box className="formField" marginBottom={2}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <FormGroup>
-                    <TextField label="First Name" id="firstName" variant="outlined" onChange={e => setFirstname(e.target.value)} />
-                    <TextField label="Last Name" id="lastName" variant="outlined" onChange={e => setLastname(e.target.value)} />
+                    <TextField error={!!firstnameError} helperText={firstnameError} label="First Name" id="firstName" variant="outlined" onChange={e => setFirstname(e.target.value)} />
+                    <TextField error={!!lastnameError} helperText={lastnameError} label="Last Name" id="lastName" variant="outlined" onChange={e => setLastname(e.target.value)} />
+
                     <DatePicker label="Start Date" id="startDate" variant="outlined" value={selectedDate} onChange={(date) => setStartDate(date)} />
                     <DatePicker label="Date of Birth" id="dob" variant="outlined" value={selectedDate} onChange={(date) => setDob(date)} />
                     <Card variant="outlined">
@@ -133,9 +136,9 @@ export default function Form() {
                             <Typography variant="h6" gutterBottom>
                                 Address
                             </Typography>
-                            <TextField label="Street" id="street" variant="outlined" onChange={e => setStreet(e.target.value)} />
-                            <TextField label="City" id="city" variant="outlined" onChange={e => setCity(e.target.value)} />
-                            <FormControl fullWidth>
+                            <TextField error={!!streetError} helperText={streetError} label="Street" id="street" variant="outlined" onChange={e => setStreet(e.target.value)} />
+                            <TextField error={!!cityError} helperText={cityError} label="City" id="city" variant="outlined" onChange={e => setCity(e.target.value)} />
+                            <FormControl fullWidth error={!!stateError}>
                                 <InputLabel id="state-select-label">State</InputLabel>
                                 <Select
                                     labelId="state-select-label"
@@ -143,6 +146,7 @@ export default function Form() {
                                     label="State"
                                     value={state || ""}
                                     onChange={e => setState(e.target.value)}
+                                    renderValue={(value) => `⚠️  - ${value}`}
                                 >
                                     {states.map((state) => (
                                         <MenuItem key={state.abbreviation} value={state.name} >
@@ -150,24 +154,29 @@ export default function Form() {
                                         </MenuItem>
                                     ))}
                                 </Select>
+                                <FormHelperText>{stateError}</FormHelperText>
                             </FormControl>
-                            <TextField label="Zip Code" id="zipCode" variant="outlined" onChange={e => setZipCode(e.target.value)} />
+                            <TextField error={!!zipCodeError} helperText={zipCodeError} label="Zip Code" id="zipCode" variant="outlined" onChange={e => setZipCode(e.target.value)} />
                         </CardContent>
                     </Card>
-                    <FormControl fullWidth>
+                    <FormControl fullWidth error={!!departmentError}>
                         <InputLabel id="department-select-label">Département</InputLabel>
                         <Select
                             labelId="department-select-label"
                             id="department"
                             label="Département"
                             value={department || ""}
-                            onChange={e => setDepartment(e.target.value)}                   >
+                            onChange={e => setDepartment(e.target.value)}
+                            renderValue={(value) => `⚠️  - ${value}`}
+                        >
                             <MenuItem value="Sales">Sales</MenuItem>
                             <MenuItem value="Marketing">Marketing</MenuItem>
                             <MenuItem value="Engineering">Engineering</MenuItem>
                             <MenuItem value="Human Resources">Human Resources</MenuItem>
                             <MenuItem value="Legal">Legal</MenuItem>
                         </Select>
+                        <FormHelperText>{departmentError}</FormHelperText>
+
                     </FormControl>
                     <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save

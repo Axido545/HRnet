@@ -1,5 +1,5 @@
 import "./form.css"
-import ModalConfirm from "../modalConfirm/modalConfirm.jsx";
+// import ModalConfirm from "../modalConfirm/modalConfirm.jsx";
 import { FormGroup } from "@mui/material"
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -172,7 +172,7 @@ export default function Form() {
                     <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save
                     </Button>
-                    <ModalConfirm />
+                    {/* <ModalConfirm /> */}
                 </FormGroup>
             </LocalizationProvider>
         </Box>

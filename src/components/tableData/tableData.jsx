@@ -7,16 +7,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useSelector } from "react-redux";
-// function createData(firstName, lastName, startDate, department, dateOfBirth, street, city, state, zipCode) {
-//     return { firstName, lastName, startDate, department, dateOfBirth, street, city, state, zipCode };
-// }
-
-// const rows = [
-//     createData("john", "doe", "11/12", "44", "10/10/01", "123 Main Street", "Anytown", "CA (Californie)", "90210")
-
-// ];
 
 export default function TableData() {
+    const done = useSelector(state => state.userState.done);
     const users = useSelector(state => state.userState.users);
 
     return (
@@ -36,26 +29,28 @@ export default function TableData() {
 
                     </TableRow>
                 </TableHead>
-                <TableBody>
-                    {users.map((row) => (
-                        <TableRow
-                            key={row.firstName}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                {row.firstName}
-                            </TableCell>
-                            <TableCell >{row.lastName}</TableCell>
-                            <TableCell >{row.startDate}</TableCell>
-                            <TableCell >{row.department}</TableCell>
-                            <TableCell >{row.dateOfBirth}</TableCell>
-                            <TableCell >{row.street}</TableCell>
-                            <TableCell >{row.city}</TableCell>
-                            <TableCell >{row.state}</TableCell>
-                            <TableCell >{row.zipCode}</TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
+                {done && (
+                    <TableBody>
+                        {users.map((row) => (
+                            <TableRow
+                                key={row.firstName}
+                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                            >
+                                <TableCell component="th" scope="row">
+                                    {row.firstName}
+                                </TableCell>
+                                <TableCell >{row.lastName}</TableCell>
+                                <TableCell >{row.startDate}</TableCell>
+                                <TableCell >{row.department}</TableCell>
+                                <TableCell >{row.dateOfBirth}</TableCell>
+                                <TableCell >{row.street}</TableCell>
+                                <TableCell >{row.city}</TableCell>
+                                <TableCell >{row.state}</TableCell>
+                                <TableCell >{row.zipCode}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                )}
             </Table>
         </TableContainer>
     );

@@ -19,14 +19,14 @@ const style = {
     p: 4,
 };
 
-export default function ModalConfirm() {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+export default function ModalConfirm({ open, handleClose }) {
+    // const [open, setOpen] = React.useState(false);
+    // const handleOpen = () => setOpen(true);
+    // const handleClose = () => setOpen(false);
     return (
         <div>
 
-            <Button onClick={handleOpen}>Save</Button>
+            {/* <Button onClick={handleOpen}>Save</Button> */}
             <Modal
                 open={open}
                 onClose={handleClose}

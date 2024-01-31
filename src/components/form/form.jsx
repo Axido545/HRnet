@@ -21,7 +21,7 @@ import { addUser, modalHandle } from "../../redux/employeeSlice";
 
 export default function Form() {
     const dispatch = useDispatch()
-    const modalOpen = useSelector((state) => state.modalOpen);
+    const modalOpen = useSelector((state) => state.userState.modalOpen);
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -108,10 +108,10 @@ export default function Form() {
                             <MenuItem value="Legal">Legal</MenuItem>
                         </Select>
                     </FormControl>
-                    <Button className="saveBtn" variant="contained" color="primary" type="submit">
+                    <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save
                     </Button>
-                    <ModalConfirm className="saveBtn" open={modalOpen} handleClose={handleModalClose} />
+                    <ModalConfirm className="saveBtn" open={modalOpen} handleClose={() => dispatch(modalHandle(false))} />
                 </FormGroup>
             </LocalizationProvider>
         </Box>

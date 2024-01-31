@@ -16,12 +16,11 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addUser, modalHandle } from "../../redux/employeeSlice";
 
 export default function Form() {
     const dispatch = useDispatch()
-    // const modalOpen = useSelector((state) => state.userState.modalOpen);
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -33,32 +32,94 @@ export default function Form() {
     const [zipCode, setZipCode] = useState('');
     const [selectedDate, setSelectedDate] = useState(null);
     const [department, setDepartment] = useState('');
-    const done = useSelector((state) => state.done);
+
+    const [firstnameError, setFirstnameError] = useState("");
+    const [lastnameError, setLastnameError] = useState("");
+    const [streetError, setStreetError] = useState("");
+    const [cityError, setCityError] = useState("");
+    const [stateError, setStateError] = useState("");
+    const [zipCodeError, setZipCodeError] = useState("");
+    const [departmentError, setDepartmentError] = useState("");
+
+    const validateForm = () => {
+        let isValid = true;
+
+        if (!firstname) {
+            setFirstnameError("First Name is required");
+            isValid = false;
+        } else {
+            setFirstnameError("");
+        }
+
+        if (!lastname) {
+            setLastnameError("Last Name is required");
+            isValid = false;
+        } else {
+            setLastnameError("");
+        }
+
+        if (!street) {
+            setStreetError("Street is required");
+            isValid = false;
+        } else {
+            setStreetError("");
+        }
+
+        if (!city) {
+            setCityError("City is required");
+            isValid = false;
+        } else {
+            setCityError("");
+        }
+
+        if (!state) {
+            setStateError("State is required");
+            isValid = false;
+        } else {
+            setStateError("");
+        }
+
+        if (!zipCode) {
+            setZipCodeError("Zip Code is required");
+            isValid = false;
+        } else {
+            setZipCodeError("");
+        }
+
+        if (!department) {
+            setDepartmentError("Department is required");
+            isValid = false;
+        } else {
+            setDepartmentError("");
+        }
+
+        return isValid;
+    };
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('fname:', firstname);
-        console.log('lname:', lastname);
-        console.log('sdate:', startDate ? startDate.toISOString() : null);
-        console.log('dob:', dob ? dob.toISOString() : null);
-        console.log('street:', street);
-        console.log('city:', city);
-        console.log('state:', state);
-        console.log('zipCode:', zipCode);
-        console.log('department:', department);
-        const user = {
-            firstname, lastname,
-            startDate: startDate ? startDate.toISOString() : null,
-            dob: dob ? dob.toISOString() : null,
-            street, city, state, zipCode, department
+        if (validateForm()) {
+            console.log('fname:', firstname);
+            console.log('lname:', lastname);
+            console.log('sdate:', startDate ? startDate.toISOString() : null);
+            console.log('dob:', dob ? dob.toISOString() : null);
+            console.log('street:', street);
+            console.log('city:', city);
+            console.log('state:', state);
+            console.log('zipCode:', zipCode);
+            console.log('department:', department);
+            const user = {
+                firstname, lastname,
+                startDate: startDate ? startDate.toISOString() : null,
+                dob: dob ? dob.toISOString() : null,
+                street, city, state, zipCode, department
+            }
+            dispatch(addUser(user))
+            dispatch(modalHandle(true));
         }
-        dispatch(addUser(user))
-        dispatch(modalHandle(true));
     }
 
-    // const handleModalClose = () => {
-    //     dispatch(modalHandle(false));
-    // };
     return <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
         <Box className="formField" marginBottom={2}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -111,7 +172,6 @@ export default function Form() {
                     <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save
                     </Button>
-                    {/* <ModalConfirm className="saveBtn" open={modalOpen} handleClose={() => dispatch(modalHandle(false))} /> */}
                     <ModalConfirm />
                 </FormGroup>
             </LocalizationProvider>

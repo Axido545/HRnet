@@ -1,5 +1,5 @@
 import "./form.css"
-// import ModalConfirm from "../modalConfirm/modalConfirm.jsx";
+import ModalConfirm from "../modalConfirm/modalConfirm.jsx";
 import { FormGroup } from "@mui/material"
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -21,7 +21,7 @@ import { addUser, modalHandle } from "../../redux/employeeSlice";
 
 export default function Form() {
     const dispatch = useDispatch()
-    const modalOpen = useSelector((state) => state.userState.modalOpen);
+    // const modalOpen = useSelector((state) => state.userState.modalOpen);
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -56,9 +56,9 @@ export default function Form() {
         dispatch(modalHandle(true));
     }
 
-    const handleModalClose = () => {
-        dispatch(modalHandle(false));
-    };
+    // const handleModalClose = () => {
+    //     dispatch(modalHandle(false));
+    // };
     return <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
         <Box className="formField" marginBottom={2}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -112,6 +112,7 @@ export default function Form() {
                         Save
                     </Button>
                     {/* <ModalConfirm className="saveBtn" open={modalOpen} handleClose={() => dispatch(modalHandle(false))} /> */}
+                    <ModalConfirm />
                 </FormGroup>
             </LocalizationProvider>
         </Box>

@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     users: [],
     done: false,
-    modalOpen: false,
 };
 
 const employeeSlice = createSlice({

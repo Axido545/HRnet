@@ -16,13 +16,16 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser, modalHandle } from "../../redux/employeeSlice";
 import FormHelperText from '@mui/material/FormHelperText';
+import Modal from '@mui/material/Modal';
+import IconButton from '@mui/material/IconButton';
 
 
 export default function Form() {
     const dispatch = useDispatch()
+    const open = useSelector((state) => state.userState.done)
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -32,7 +35,6 @@ export default function Form() {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zipCode, setZipCode] = useState('');
-    const [selectedDate, setSelectedDate] = useState(null);
     const [department, setDepartment] = useState('');
 
     const [firstnameError, setFirstnameError] = useState("");
@@ -99,26 +101,48 @@ export default function Form() {
     };
 
 
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+    };
+
+    const handleClose = () => {
+        dispatch(modalHandle(false))
+
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
         if (validateForm()) {
             console.log('fname:', firstname);
             console.log('lname:', lastname);
-            console.log('sdate:', startDate ? startDate.toISOString() : null);
-            console.log('dob:', dob ? dob.toISOString() : null);
+            console.log('sdate:', startDate);
+            console.log('dob:', dob);
             console.log('street:', street);
             console.log('city:', city);
             console.log('state:', state);
             console.log('zipCode:', zipCode);
             console.log('department:', department);
             const user = {
-                firstname, lastname,
-                startDate: startDate ? startDate.toISOString() : null,
-                dob: dob ? dob.toISOString() : null,
-                street, city, state, zipCode, department
+                id: new Date().getTime(),
+                firstname,
+                lastname,
+                startDate,
+                dob,
+                street,
+                city,
+                state,
+                zipCode,
+                department
             }
             dispatch(addUser(user))
-            dispatch(modalHandle(true));
         }
     }
 
@@ -129,8 +153,8 @@ export default function Form() {
                     <TextField error={!!firstnameError} helperText={firstnameError} label="First Name" id="firstName" variant="outlined" onChange={e => setFirstname(e.target.value)} />
                     <TextField error={!!lastnameError} helperText={lastnameError} label="Last Name" id="lastName" variant="outlined" onChange={e => setLastname(e.target.value)} />
 
-                    <DatePicker label="Start Date" id="startDate" variant="outlined" value={selectedDate} onChange={(date) => setStartDate(date)} />
-                    <DatePicker label="Date of Birth" id="dob" variant="outlined" value={selectedDate} onChange={(date) => setDob(date)} />
+                    <DatePicker label="Start Date" id="startDate" variant="outlined" value={startDate} onChange={(date) => setStartDate(date)} />
+                    <DatePicker label="Date of Birth" id="dob" variant="outlined" value={dob} onChange={(date) => setDob(date)} />
                     <Card variant="outlined">
                         <CardContent>
                             <Typography variant="h6" gutterBottom>
@@ -181,7 +205,27 @@ export default function Form() {
                     <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save
                     </Button>
-                    {/* <ModalConfirm /> */}
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <IconButton
+                                edge="end"
+                                color="inherit"
+                                onClick={handleClose}
+                                aria-label="close"
+                                sx={{ position: 'absolute', top: 0, right: 0 }}
+                            >
+                                <i>X</i>
+                            </IconButton>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                Employee Created!
+                            </Typography>
+                        </Box>
+                    </Modal >
                 </FormGroup>
             </LocalizationProvider>
         </Box>

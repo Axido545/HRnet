@@ -9,7 +9,6 @@ import Paper from '@mui/material/Paper';
 import { useSelector } from "react-redux";
 
 export default function TableData() {
-    const done = useSelector(state => state.userState.done);
     const users = useSelector(state => state.userState.users);
 
     return (
@@ -29,28 +28,28 @@ export default function TableData() {
 
                     </TableRow>
                 </TableHead>
-                {done && (
-                    <TableBody>
-                        {users.map((row) => (
-                            <TableRow
-                                key={row.firstName}
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                            >
-                                <TableCell component="th" scope="row">
-                                    {row.firstName}
-                                </TableCell>
-                                <TableCell >{row.lastName}</TableCell>
-                                <TableCell >{row.startDate}</TableCell>
-                                <TableCell >{row.department}</TableCell>
-                                <TableCell >{row.dateOfBirth}</TableCell>
-                                <TableCell >{row.street}</TableCell>
-                                <TableCell >{row.city}</TableCell>
-                                <TableCell >{row.state}</TableCell>
-                                <TableCell >{row.zipCode}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                )}
+                (
+                <TableBody>
+                    {users.map((row) => (
+                        <TableRow
+                            key={row.firstName}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell component="th" scope="row">
+                                {row.firstName}
+                            </TableCell>
+                            <TableCell >{row.lastName}</TableCell>
+                            <TableCell >{row.startDate}</TableCell>
+                            <TableCell >{row.department}</TableCell>
+                            <TableCell >{row.dateOfBirth}</TableCell>
+                            <TableCell >{row.street}</TableCell>
+                            <TableCell >{row.city}</TableCell>
+                            <TableCell >{row.state}</TableCell>
+                            <TableCell >{row.zipCode}</TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+                )
             </Table>
         </TableContainer>
     );

@@ -1,5 +1,4 @@
 import "./form.css"
-// import ModalConfirm from "../modalConfirm/modalConfirm.jsx";
 import { FormGroup } from "@mui/material"
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -100,7 +99,6 @@ export default function Form() {
         return isValid;
     };
 
-
     const style = {
         position: 'absolute',
         top: '50%',
@@ -152,7 +150,6 @@ export default function Form() {
                 <FormGroup>
                     <TextField error={!!firstnameError} helperText={firstnameError} label="First Name" id="firstName" variant="outlined" onChange={e => setFirstname(e.target.value)} />
                     <TextField error={!!lastnameError} helperText={lastnameError} label="Last Name" id="lastName" variant="outlined" onChange={e => setLastname(e.target.value)} />
-
                     <DatePicker label="Start Date" id="startDate" variant="outlined" value={startDate} onChange={(date) => setStartDate(date)} />
                     <DatePicker label="Date of Birth" id="dob" variant="outlined" value={dob} onChange={(date) => setDob(date)} />
                     <Card variant="outlined">

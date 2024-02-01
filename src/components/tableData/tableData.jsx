@@ -81,26 +81,4 @@ export default function TableData() {
             />
         </Box>
     );
-
-
-    //                 {users.map((row) => (
-    //                     <TableRow
-    //                         key={row.firstName}
-    //                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-    //                     >
-    //                         <TableCell component="th" scope="row">
-    //                             {row.firstName}
-    //                         </TableCell>
-    //                         <TableCell >{row.lastName}</TableCell>
-    //                         <TableCell >{row.startDate}</TableCell>
-    //                         <TableCell >{row.department}</TableCell>
-    //                         <TableCell >{row.dateOfBirth}</TableCell>
-    //                         <TableCell >{row.street}</TableCell>
-    //                         <TableCell >{row.city}</TableCell>
-    //                         <TableCell >{row.state}</TableCell>
-    //                         <TableCell >{row.zipCode}</TableCell>
-    //                     </TableRow>
-    //                 ))}
-
-
 }

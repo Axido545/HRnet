@@ -1,0 +1,30 @@
+.banner {
+    border-top: #dfdfdf solid 1px;
+    border-bottom: #dfdfdf solid 1px;
+
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    object-fit: cover;
+    background-position: top center;
+    background-size: cover;
+}
+
+
+.banner h2 {
+    color: #0c2e8a;
+    font-size: 30px;
+
+}
+
+.banner h2 span {
+    color: #50d8af;
+}
+
+
+.banner-title {
+    z-index: 1;
+}

@@ -20,7 +20,7 @@ import { addUser, modalHandle } from "../../redux/employeeSlice";
 import FormHelperText from '@mui/material/FormHelperText';
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
-
+import closeIco from "../../assets/close.png"
 
 export default function Form() {
     const dispatch = useDispatch()
@@ -113,7 +113,6 @@ export default function Form() {
 
     const handleClose = () => {
         dispatch(modalHandle(false))
-
     }
 
     const handleSubmit = (event) => {
@@ -154,9 +153,7 @@ export default function Form() {
                     <DatePicker label="Date of Birth" id="dob" variant="outlined" value={dob} onChange={(date) => setDob(date)} />
                     <Card variant="outlined">
                         <CardContent>
-                            <Typography variant="h6" gutterBottom>
-                                Address
-                            </Typography>
+                            <Typography variant="h6" gutterBottom>Address</Typography>
                             <TextField error={!!streetError} helperText={streetError} label="Street" id="street" variant="outlined" onChange={e => setStreet(e.target.value)} />
                             <TextField error={!!cityError} helperText={cityError} label="City" id="city" variant="outlined" onChange={e => setCity(e.target.value)} />
                             <FormControl fullWidth error={!!stateError}>
@@ -197,7 +194,6 @@ export default function Form() {
                             <MenuItem value="Legal">Legal</MenuItem>
                         </Select>
                         <FormHelperText>{departmentError}</FormHelperText>
-
                     </FormControl>
                     <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save
@@ -214,9 +210,9 @@ export default function Form() {
                                 color="inherit"
                                 onClick={handleClose}
                                 aria-label="close"
-                                sx={{ position: 'absolute', top: 0, right: 0 }}
+                                sx={{ position: 'absolute', top: 10, right: 10 }}
                             >
-                                <i>X</i>
+                                <i><img src={closeIco} className="close-ico" alt="btn-close" /></i>
                             </IconButton>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                 Employee Created!

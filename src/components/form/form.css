@@ -8,32 +8,9 @@ input {
     margin: 30px;
 }
 
-/* .formField {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    /* Espacement vertical entre les éléments du formulaire */
-}
 
-/* Ajouter des marges spécifiques à certains éléments si nécessaire */
-#firstName,
-#lastName,
-#startDate,
-#dob,
-#street,
-#city,
-#state,
-#zipCode,
-#department {
-    margin-bottom: 16px;
-    /* Espacement en bas de chaque champ */
-}
-
-.saveBtn {
-    margin-top: 16px;
-    /* Espacement en haut du bouton "Save" */
-}
-
-.css-sghohy-MuiButtonBase-root-MuiButton-root {
-    background-color: red;
+.close-ico {
+    width: 16px;
+    height: 16px;
+    margin-right: 15px;
 }

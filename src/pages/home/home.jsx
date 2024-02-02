@@ -7,7 +7,7 @@ import Banner from "../../layout/banner/banner.jsx"
 export default function Home() {
     return <>
         <Header />
-        <Banner title1="create" title2=" employee" />
+        <Banner title1="Create" title2=" Employee" />
         <div className="container">
             <Form />
         </div >

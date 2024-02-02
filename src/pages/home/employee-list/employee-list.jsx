@@ -1,11 +1,16 @@
 import "./employee-list.css"
-import { NavLink } from "react-router-dom"
 import TableData from "../../../components/tableData/tableData.jsx"
+import Footer from "../../../layout/footer/footer.jsx"
+import Header from "../../../layout/header/header.jsx"
+import Banner from "../../../layout/banner/banner.jsx"
 
 export default function EmployeeList() {
-    return <div id="employee-div" className="container">
-        <h1>Current Employees</h1>
-        <TableData />
-        <NavLink to="/">Home</NavLink>
-    </div>
+    return <>     <Header />
+        <Banner title1="Current" title2="Employees" />
+        <div id="employee-div" className="container">
+            <TableData />
+        </div>
+        <Footer />
+    </>
+
 }

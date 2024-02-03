@@ -12,7 +12,7 @@ header {
     align-items: center;
 }
 
-logo {
+.logo {
     margin: 10px;
     font-size: 44px;
     color: #1976d2;
@@ -21,7 +21,7 @@ logo {
 
 }
 
-logo span {
+.logo span {
     color: #50d8af;
     font-weight: 100;
 }

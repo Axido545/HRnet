@@ -164,7 +164,7 @@ export default function Form() {
                                     label="State"
                                     value={state || ""}
                                     onChange={e => setState(e.target.value)}
-                                    renderValue={(value) => `⚠️  - ${value}`}
+                                // renderValue={(value) => `⚠️  - ${value}`}
                                 >
                                     {states.map((state) => (
                                         <MenuItem key={state.abbreviation} value={state.name} >
@@ -185,7 +185,7 @@ export default function Form() {
                             label="Département"
                             value={department || ""}
                             onChange={e => setDepartment(e.target.value)}
-                            renderValue={(value) => `⚠️  - ${value}`}
+                        // renderValue={(value) => `⚠️  - ${value}`}
                         >
                             <MenuItem value="Sales">Sales</MenuItem>
                             <MenuItem value="Marketing">Marketing</MenuItem>
@@ -194,6 +194,21 @@ export default function Form() {
                             <MenuItem value="Legal">Legal</MenuItem>
                         </Select>
                         <FormHelperText>{departmentError}</FormHelperText>
+                    </FormControl>
+                    <FormControl fullWidth>
+                        <InputLabel id="department-select-label">Departement</InputLabel>
+                        <Select
+                            labelId="department-select-label"
+                            id="department"
+                            label="Department"
+                            value={department}
+                            onChange={e => setDepartment(e.target.value)}                        >
+                            <MenuItem value="Sales">Sales</MenuItem>
+                            <MenuItem value="Marketing">Marketing</MenuItem>
+                            <MenuItem value="Engineering">Engineering</MenuItem>
+                            <MenuItem value="Human Resources">Human Resources</MenuItem>
+                            <MenuItem value="Legal">Legal</MenuItem>
+                        </Select>
                     </FormControl>
                     <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save

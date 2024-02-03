@@ -1,4 +1,4 @@
-ul {
+.menu1 {
     list-style-type: none;
     top: 16px;
     display: flex;
@@ -10,14 +10,14 @@ ul {
     align-items: center;
 }
 
-li {
+.menu2 {
     display: inline-block;
     padding-right: 10%;
     font-weight: bold;
     font-family: 'montsserrat';
 }
 
-li:hover>a {
+.menu2:hover>a {
     color: #50d8af;
 }
 

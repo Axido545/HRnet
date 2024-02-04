@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
 
+
 const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
@@ -55,7 +56,10 @@ const columns = [
 
 export default function TableData() {
     const users = useSelector(state => state.userState.users);
-    console.log(users)
+    console.log('tableData useSelector', users);
+    console.log('tableau:', users.map((row) => ({ ...row, id: row.id })));
+
+
     return (
         <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid

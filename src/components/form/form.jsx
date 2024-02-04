@@ -139,6 +139,7 @@ export default function Form() {
                 zipCode,
                 department
             }
+            console.log('form dispatch addUser:', user);
             dispatch(addUser(user))
         }
     }
@@ -164,7 +165,7 @@ export default function Form() {
                                     label="State"
                                     value={state || ""}
                                     onChange={e => setState(e.target.value)}
-                                    renderValue={(value) => `⚠️  - ${value}`}
+                                // renderValue={(value) => `⚠️  - ${value}`}
                                 >
                                     {states.map((state) => (
                                         <MenuItem key={state.abbreviation} value={state.name} >
@@ -185,7 +186,7 @@ export default function Form() {
                             label="Département"
                             value={department || ""}
                             onChange={e => setDepartment(e.target.value)}
-                            renderValue={(value) => `⚠️  - ${value}`}
+                        // renderValue={(value) => `⚠️  - ${value}`}
                         >
                             <MenuItem value="Sales">Sales</MenuItem>
                             <MenuItem value="Marketing">Marketing</MenuItem>

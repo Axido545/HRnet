@@ -10,13 +10,16 @@ const employeeSlice = createSlice({
     name: "userState",
     reducers: {
         addUser(state, action) {
+            console.log("addUser reducer - payload:", action.payload);
             state.users = [...state.users, action.payload];
             state.done = true;
         },
         modalHandle(state, action) {
+            console.log("modalHandle reducer - payload:", action.payload);
             state.done = action.payload;
         },
         resetDone(state) {
+            console.log("resetDone reducer");
             state.done = false;
         },
     },

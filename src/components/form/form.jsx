@@ -141,6 +141,8 @@ export default function Form() {
             }
             console.log('form dispatch addUser:', user);
             dispatch(addUser(user))
+            dispatch(modalHandle(true));
+
         }
     }
 

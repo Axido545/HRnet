@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { states } from "../../utils/state"
@@ -28,8 +28,8 @@ export default function Form() {
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
-    const [startDate, setStartDate] = useState(null);
-    const [dob, setDob] = useState(null);
+    // const [startDate, setStartDate] = useState(null);
+    // const [dob, setDob] = useState(null);
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -120,8 +120,8 @@ export default function Form() {
         if (validateForm()) {
             console.log('fname:', firstname);
             console.log('lname:', lastname);
-            console.log('sdate:', startDate);
-            console.log('dob:', dob);
+            // console.log('sdate:', startDate);
+            // console.log('dob:', dob);
             console.log('street:', street);
             console.log('city:', city);
             console.log('state:', state);
@@ -131,8 +131,8 @@ export default function Form() {
                 id: new Date().getTime(),
                 firstname,
                 lastname,
-                startDate,
-                dob,
+                // startDate,
+                // dob,
                 street,
                 city,
                 state,
@@ -149,8 +149,8 @@ export default function Form() {
                 <FormGroup>
                     <TextField error={!!firstnameError} helperText={firstnameError} label="First Name" id="firstName" variant="outlined" onChange={e => setFirstname(e.target.value)} />
                     <TextField error={!!lastnameError} helperText={lastnameError} label="Last Name" id="lastName" variant="outlined" onChange={e => setLastname(e.target.value)} />
-                    <DatePicker label="Start Date" id="startDate" variant="outlined" value={startDate} onChange={(date) => setStartDate(date)} />
-                    <DatePicker label="Date of Birth" id="dob" variant="outlined" value={dob} onChange={(date) => setDob(date)} />
+                    {/* <DatePicker label="Start Date" id="startDate" variant="outlined" value={startDate} onChange={(date) => setStartDate(date)} />
+                    <DatePicker label="Date of Birth" id="dob" variant="outlined" value={dob} onChange={(date) => setDob(date)} /> */}
                     <Card variant="outlined">
                         <CardContent>
                             <Typography variant="h6" gutterBottom>Address</Typography>
@@ -164,7 +164,7 @@ export default function Form() {
                                     label="State"
                                     value={state || ""}
                                     onChange={e => setState(e.target.value)}
-                                // renderValue={(value) => `⚠️  - ${value}`}
+                                    renderValue={(value) => `⚠️  - ${value}`}
                                 >
                                     {states.map((state) => (
                                         <MenuItem key={state.abbreviation} value={state.name} >
@@ -185,7 +185,7 @@ export default function Form() {
                             label="Département"
                             value={department || ""}
                             onChange={e => setDepartment(e.target.value)}
-                        // renderValue={(value) => `⚠️  - ${value}`}
+                            renderValue={(value) => `⚠️  - ${value}`}
                         >
                             <MenuItem value="Sales">Sales</MenuItem>
                             <MenuItem value="Marketing">Marketing</MenuItem>
@@ -194,21 +194,6 @@ export default function Form() {
                             <MenuItem value="Legal">Legal</MenuItem>
                         </Select>
                         <FormHelperText>{departmentError}</FormHelperText>
-                    </FormControl>
-                    <FormControl fullWidth>
-                        <InputLabel id="department-select-label">Departement</InputLabel>
-                        <Select
-                            labelId="department-select-label"
-                            id="department"
-                            label="Department"
-                            value={department}
-                            onChange={e => setDepartment(e.target.value)}                        >
-                            <MenuItem value="Sales">Sales</MenuItem>
-                            <MenuItem value="Marketing">Marketing</MenuItem>
-                            <MenuItem value="Engineering">Engineering</MenuItem>
-                            <MenuItem value="Human Resources">Human Resources</MenuItem>
-                            <MenuItem value="Legal">Legal</MenuItem>
-                        </Select>
                     </FormControl>
                     <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save

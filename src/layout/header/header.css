@@ -22,7 +22,7 @@ header {
 }
 
 .logo span {
-    color: #50d8af;
+    color: #19D219;
     font-weight: 100;
 }
 
@@ -48,5 +48,5 @@ a {
 }
 
 a:active {
-    color: #50d8af;
+    color: #19D219;
 }

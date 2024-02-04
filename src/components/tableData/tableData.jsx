@@ -15,21 +15,21 @@ const columns = [
         headerName: 'Last name',
         type: 'string',
     },
-    {
-        field: 'startDate',
-        headerName: 'Start Date',
-        type: 'date',
-    },
+    // {
+    //     field: 'startDate',
+    //     headerName: 'Start Date',
+    //     type: 'date',
+    // },
     {
         field: 'department',
         headerName: 'Department',
         type: 'string',
     },
-    {
-        field: 'dob',
-        headerName: 'Date of Birth',
-        type: 'date',
-    },
+    // {
+    //     field: 'dob',
+    //     headerName: 'Date of Birth',
+    //     type: 'date',
+    // },
     {
         field: 'street',
         headerName: 'Street',
@@ -55,13 +55,13 @@ const columns = [
 
 export default function TableData() {
     const users = useSelector(state => state.userState.users);
-    console.log(users.firstName)
+    console.log(users)
     return (
         <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
                 rows={users.map((row) => ({
                     ...row,
-                    id: row.id
+                    id: row.id,
                 }))}
                 columns={columns}
                 initialState={{

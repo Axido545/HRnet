@@ -50,23 +50,19 @@ const columns = [
         headerName: 'Zip Code',
         type: 'string',
     },
-    {
-        field: 'fullName',
-        headerName: 'Full name',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        valueGetter: (params) =>
-            `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    },
 ];
+
 
 export default function TableData() {
     const users = useSelector(state => state.userState.users);
-
+    console.log(users.firstName)
     return (
         <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
-                rows={users.map((row) => ({ ...row, id: row.firstName }))}
+                rows={users.map((row) => ({
+                    ...row,
+                    id: row.id
+                }))}
                 columns={columns}
                 initialState={{
                     pagination: {

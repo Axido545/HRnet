@@ -54,12 +54,20 @@ export default function TableData() {
         },
     ];
     const users = useSelector(state => state.userState.users);
+
     console.log('tableData useSelector', users);
     console.log('tableau:', users.map((row) => ({ ...row, id: row.id })));
-    const rows = users.map((row) => ({
-        ...row,
-        id: row.id,
-    }))
+
+    const localStorageContent = JSON.parse(localStorage.getItem('userState'));
+    console.log("Contenu du localStorage:", localStorageContent);
+
+    const rows = localStorageContent?.users || [];
+
+
+    // users.map((row) => ({
+    //     ...row,
+    //     id: row.id,
+    // }))
 
     return (
         <Box sx={{ height: 400, width: '100%' }}>

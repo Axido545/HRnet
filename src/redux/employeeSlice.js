@@ -6,13 +6,15 @@ const initialState = {
 };
 
 const employeeSlice = createSlice({
-    initialState,
     name: "userState",
+    initialState,
     reducers: {
         addUser(state, action) {
             console.log("addUser reducer - payload:", action.payload);
             state.users = [...state.users, action.payload];
             state.done = true;
+            localStorage.setItem('userState', JSON.stringify(state));
+
         },
         modalHandle(state, action) {
             console.log("modalHandle reducer - payload:", action.payload);

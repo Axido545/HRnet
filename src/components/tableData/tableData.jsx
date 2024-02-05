@@ -5,6 +5,10 @@ import { DataGrid } from '@mui/x-data-grid';
 
 export default function TableData() {
 
+    function formatDate(timestamp) {
+        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+        return new Date(timestamp).toLocaleDateString(undefined, options);
+    }
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
         {
@@ -17,21 +21,25 @@ export default function TableData() {
             headerName: 'Last name',
             type: 'string',
         },
-        // {
-        //     field: 'startDate',
-        //     headerName: 'Start Date',
-        //     type: 'date',
-        // },
+        {
+            field: 'startDate',
+            headerName: 'Start Date',
+            type: 'date',
+            valueFormatter: (params) => formatDate(params.value),
+
+        },
         {
             field: 'department',
             headerName: 'Department',
             type: 'string',
         },
-        // {
-        //     field: 'dob',
-        //     headerName: 'Date of Birth',
-        //     type: 'date',
-        // },
+        {
+            field: 'dob',
+            headerName: 'Date of Birth',
+            type: 'date',
+            valueFormatter: (params) => formatDate(params.value),
+
+        },
         {
             field: 'street',
             headerName: 'Street',
@@ -62,12 +70,6 @@ export default function TableData() {
     console.log("Contenu du localStorage:", localStorageContent);
 
     const rows = localStorageContent?.users || [];
-
-
-    // users.map((row) => ({
-    //     ...row,
-    //     id: row.id,
-    // }))
 
     return (
         <Box sx={{ height: 400, width: '100%' }}>

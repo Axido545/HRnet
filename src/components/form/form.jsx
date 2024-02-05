@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
-// import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { states } from "../../utils/state"
@@ -28,8 +28,8 @@ export default function Form() {
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
-    // const [startDate, setStartDate] = useState(null);
-    // const [dob, setDob] = useState(null);
+    const [startDate, setStartDate] = useState(null);
+    const [dob, setDob] = useState(null);
     const [street, setStreet] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
@@ -120,8 +120,8 @@ export default function Form() {
         if (validateForm()) {
             console.log('fname:', firstname);
             console.log('lname:', lastname);
-            // console.log('sdate:', startDate);
-            // console.log('dob:', dob);
+            console.log('sdate:', startDate);
+            console.log('dob:', dob);
             console.log('street:', street);
             console.log('city:', city);
             console.log('state:', state);
@@ -131,8 +131,8 @@ export default function Form() {
                 id: new Date().getTime(),
                 firstname,
                 lastname,
-                // startDate,
-                // dob,
+                startDate,
+                dob,
                 street,
                 city,
                 state,
@@ -152,8 +152,8 @@ export default function Form() {
                 <FormGroup>
                     <TextField error={!!firstnameError} helperText={firstnameError} label="First Name" id="firstName" variant="outlined" onChange={e => setFirstname(e.target.value)} />
                     <TextField error={!!lastnameError} helperText={lastnameError} label="Last Name" id="lastName" variant="outlined" onChange={e => setLastname(e.target.value)} />
-                    {/* <DatePicker label="Start Date" id="startDate" variant="outlined" value={startDate} onChange={(date) => setStartDate(date)} />
-                    <DatePicker label="Date of Birth" id="dob" variant="outlined" value={dob} onChange={(date) => setDob(date)} /> */}
+                    <DatePicker label="Start Date" id="startDate" variant="outlined" value={startDate} onChange={(date) => setStartDate(date)} />
+                    <DatePicker label="Date of Birth" id="dob" variant="outlined" value={dob} onChange={(date) => setDob(date)} />
                     <Card variant="outlined">
                         <CardContent>
                             <Typography variant="h6" gutterBottom>Address</Typography>

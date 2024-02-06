@@ -1,7 +1,6 @@
 .banner {
     border-top: #dfdfdf solid 1px;
     border-bottom: #dfdfdf solid 1px;
-
     height: 70px;
     display: flex;
     justify-content: center;
@@ -13,17 +12,14 @@
     background-size: cover;
 }
 
-
 .banner h2 {
     color: #1976d2;
     font-size: 30px;
-
 }
 
 .banner h2 span {
     color: #19D219;
 }
-
 
 .banner-title {
     z-index: 1;

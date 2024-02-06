@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import Home from './pages/home/home.jsx'
-import EmployeeList from './pages/home/employee-list/employee-list.jsx';
+import EmployeeList from './pages/employee-list/employee-list.jsx';
 import {
   createBrowserRouter,
   RouterProvider,

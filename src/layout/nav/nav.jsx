@@ -6,7 +6,6 @@ export default function Nav() {
         <ul className="menu1">
             <li className="menu2"><Link to="/">Home</Link></li>
             <li className="menu2"> <Link to="/employee-list">View Current Employees</Link></li>
-
         </ul>
     </nav>
 }

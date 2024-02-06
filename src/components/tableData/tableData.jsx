@@ -10,7 +10,11 @@ export default function TableData() {
         return new Date(timestamp).toLocaleDateString(undefined, options);
     }
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        {
+            field: 'id',
+            headerName: 'ID',
+            type: 'number',
+        },
         {
             field: 'firstname',
             headerName: 'First name',
@@ -58,7 +62,7 @@ export default function TableData() {
         {
             field: 'zipCode',
             headerName: 'Zip Code',
-            type: 'string',
+            type: 'number',
         },
     ];
     const users = useSelector(state => state.userState.users);

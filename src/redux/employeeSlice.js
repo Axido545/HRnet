@@ -13,7 +13,7 @@ const employeeSlice = createSlice({
             console.log("addUser reducer - payload:", action.payload);
             state.users = [...state.users, action.payload];
             state.done = true;
-            localStorage.setItem('userState', JSON.stringify(state));
+            // localStorage.setItem('userState', JSON.stringify(state));
 
         },
         modalHandle(state, action) {

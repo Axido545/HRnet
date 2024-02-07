@@ -1,7 +1,7 @@
 import "./tableData.css";
 import { useSelector } from "react-redux";
 import Box from '@mui/material/Box';
-import { DataGrid } from '@mui/x-data-grid';
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 export default function TableData() {
 
@@ -10,11 +10,11 @@ export default function TableData() {
         return new Date(timestamp).toLocaleDateString(undefined, options);
     }
     const columns = [
-        {
-            field: 'id',
-            headerName: 'ID',
-            type: 'number',
-        },
+        // {
+        //     field: 'id',
+        //     headerName: 'ID',
+        //     type: 'number',
+        // },
         {
             field: 'firstname',
             headerName: 'First name',
@@ -67,29 +67,33 @@ export default function TableData() {
     ];
     const users = useSelector(state => state.userState.users);
 
-    console.log('tableData useSelector', users);
-    console.log('tableau:', users.map((row) => ({ ...row, id: row.id })));
-
-    const localStorageContent = JSON.parse(localStorage.getItem('userState'));
-    console.log("Contenu du localStorage:", localStorageContent);
-
-    const rows = localStorageContent?.users || [];
 
     return (
         <Box sx={{ height: 400, width: '100%' }}>
             <DataGrid
-                rows={rows}
+                rows={users}
                 columns={columns}
                 initialState={{
+                    filterModel: {
+                        items: [],
+                        quickFilterValues: [],
+                    },
                     pagination: {
                         paginationModel: {
-                            pageSize: 5,
+                            pageSize: 10,
                         },
                     },
                 }}
-                pageSizeOptions={[5]}
-                checkboxSelection
+                pageSizeOptions={[10, 25, 50]}
                 disableRowSelectionOnClick
+                slots={{ toolbar: GridToolbar }}
+                slotProps={{
+                    toolbar: {
+                        showQuickFilter: true,
+                    },
+
+                }}
+
             />
         </Box>
     );

@@ -10,11 +10,6 @@ export default function TableData() {
         return new Date(timestamp).toLocaleDateString(undefined, options);
     }
     const columns = [
-        // {
-        //     field: 'id',
-        //     headerName: 'ID',
-        //     type: 'number',
-        // },
         {
             field: 'firstname',
             headerName: 'First name',

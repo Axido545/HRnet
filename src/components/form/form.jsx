@@ -18,9 +18,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, modalHandle } from "../../redux/employeeSlice";
 import FormHelperText from '@mui/material/FormHelperText';
-import Modal from '@mui/material/Modal';
-import IconButton from '@mui/material/IconButton';
-import closeIco from "../../assets/close.png"
+import { ModalAxido } from "modal-axido";
 
 export default function Form() {
     const dispatch = useDispatch()
@@ -199,27 +197,7 @@ export default function Form() {
                     <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save
                     </Button>
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={style}>
-                            <IconButton
-                                edge="end"
-                                color="inherit"
-                                onClick={handleClose}
-                                aria-label="close"
-                                sx={{ position: 'absolute', top: 10, right: 10 }}
-                            >
-                                <i><img src={closeIco} className="close-ico" alt="btn-close" /></i>
-                            </IconButton>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                Employee Created!
-                            </Typography>
-                        </Box>
-                    </Modal >
+                    <ModalAxido textModal="Employee Created" isOpen={open} handleClose={handleClose} />
                 </FormGroup>
             </LocalizationProvider>
         </Box>

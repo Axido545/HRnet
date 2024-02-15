@@ -18,7 +18,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, modalHandle } from "../../redux/employeeSlice";
 import FormHelperText from '@mui/material/FormHelperText';
-import { ModalAxido } from "modal-axido";
+import ModalAxido from "modal-axido/dist";
 
 export default function Form() {
     const dispatch = useDispatch()

@@ -42,6 +42,9 @@ export default function Form() {
     const [zipCodeError, setZipCodeError] = useState("");
     const [departmentError, setDepartmentError] = useState("");
 
+    const [formValid, setFormValid] = useState(false);
+
+
     const validateForm = () => {
         let isValid = true;
 
@@ -93,20 +96,8 @@ export default function Form() {
         } else {
             setDepartmentError("");
         }
-
+        setFormValid(isValid)
         return isValid;
-    };
-
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        bgcolor: 'background.paper',
-        border: '2px solid #000',
-        boxShadow: 24,
-        p: 4,
     };
 
     const handleClose = () => {
@@ -197,7 +188,7 @@ export default function Form() {
                     <Button className="saveBtn" variant="contained" color="primary" type="submit" onClick={() => dispatch(modalHandle(true))}>
                         Save
                     </Button>
-                    <ModalAxido textModal="Employee Created" isOpen={open} handleClose={handleClose} />
+                    <ModalAxido textModal="Employee Created" isOpen={open && formValid} handleClose={handleClose} />
                 </FormGroup>
             </LocalizationProvider>
         </Box>
